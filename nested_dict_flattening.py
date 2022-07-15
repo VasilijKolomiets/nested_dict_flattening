@@ -15,8 +15,41 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
     Returns:
         dict: Flatten dictionary
     """
+    for key, value in pattern_dict.items():
+        if key in dict_in:
+            print(F'{key=} {dict_in[key]=}')
+
     return dict()
 
 if __name__ == '__main__':
-    if isinstance(flatten_by_pattern(dict(), dict()), dict):
+    nested_dict_example = dict(
+        bdate='11.7.1993',
+        last_name='Kovalenko',
+        first_name='Shimon',
+        city=dict(id=3, title='Moscow'),
+        country=dict(id=77, title='Russia'),
+        schools=dict(id=378, year_from=2000, year_to=2012, name='School 33'),
+        last_seen=dict(time=True),
+        universities=dict(
+            id=719,  name='MSU',
+            faculty='Applied Mathematics',
+            graduation=dict(year_from=2013, year_to=2018),
+        )
+        )
+
+    flatten_pattern_dict = dict(
+        bdate=True,
+        last_name=True,
+        first_name=True,
+        city=dict(title=True),
+        country=dict(title=True),
+        schools=dict(year_to=True),
+        last_seen=dict(time=True),
+        universities=dict(
+            name=True,
+            graduation=dict(year_to=True),
+            ),
+    )
+
+    if isinstance(flatten_by_pattern(nested_dict_example, flatten_pattern_dict), dict):
         print("Вона працює!")
