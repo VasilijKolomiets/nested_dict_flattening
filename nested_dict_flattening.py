@@ -15,7 +15,7 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
     Returns:
         dict: Flatten dictionary
     """
-    return dict() 
+    return dict()
 
 if __name__ == '__main__':
     if isinstance(flatten_by_pattern(dict(), dict()), dict):
