@@ -8,7 +8,7 @@
 #### Step 2.  Code with example of nested dict printing out.
 #### Step 3.  1-st attempt to form resulting dictionary. All keys presence assumed.
 
-'''Python
+```Python
 """
     This module gives  function(s) for nested dict flattening (by some pattern).
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     )
 
     print(flatten_by_pattern(nested_dict_example, flatten_pattern_dict))
-'''
+```
 
 The problem is - we have formed out only keys lelel 1 of input dictionary.     
 May be try recursion?
