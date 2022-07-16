@@ -3,7 +3,7 @@
 
     It may be useful in some socisl networks parsing
 
-    Development . All keys presence assumed.
+    Development 4-th step. Recursive calls.
 """
 
 
@@ -21,8 +21,12 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
     for key, value in pattern_dict.items():
         if key in dict_in:
             print(F'{key=} {dict_in[key]=}')
-            if value is True:                       # copyting proper final value
+            if value is True:                       # copying proper final value
                 out_dict.update({key: dict_in[key]})
+            elif isinstance(value, dict):
+                out_dict.update(flatten_by_pattern(dict_in[key], value))
+            else:
+                assert False, F'What the "{value}"? Or "True" or dict !! '
 
     return out_dict
 
