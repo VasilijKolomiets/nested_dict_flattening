@@ -145,10 +145,10 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict, parent_key='') -> dict
 ```
 It gives the last print  output:
 ```
-{'bdate': '11.7.1993', 'last_name': 'Kovalenko', 'first_name': 'Shimon', 'title': 'Russia', 'year_to': 2018, 'time': True, 'name': 'MSU'}
+{'.bdate': '11.7.1993', '.last_name': 'Kovalenko', '.first_name': 'Shimon', '.city.title': 'Moscow', '.country.title': 'Russia', '.schools.year_to': 2012, '.last_seen.time': True, '.universities.name': 'MSU', '.universities.graduation.year_to': 2018}
 ```
 
-It seams much better..      
+It seams much better. Now we haw all fieds needed.    
 But it is look like robotic history - not human friendly? isn it?
 May be exchange tjese keys to human like?
 
