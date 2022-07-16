@@ -77,6 +77,46 @@ The final prints produce:
 ```
 
 
-The problem is - we have formed out only keys lelel 1 of input dictionary.     
+The problem is - we have formed out only keys lelel 1 of input dictionary. 
 May be try recursion?
+
+#### Step 4.  Recursion works
+
+Only some lines was added
+
+```Python
+def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
+    """Flatten the 'dict_in' nested dict with some pattern dictionary - 'pattern_dict'.
+
+    Args:
+        dict_in (dict): income (nested) dictionary
+        pattern_dict (dict): pattern dict for flattening
+
+    Returns:
+        dict: Flatten dictionary
+    """
+    out_dict = dict()
+    for key, value in pattern_dict.items():
+        if key in dict_in:
+            print(F'{key=} {dict_in[key]=}')
+            if value is True:                       # copying proper final value
+                out_dict.update({key: dict_in[key]})
+            elif isinstance(value, dict):
+                out_dict.update(flatten_by_pattern(dict_in[key], value))
+            else:
+                assert False, F'What the "{value}"? Or "True" or dict !! '
+
+    return out_dict
+
+```
+
+It gives the last print  output:
+```
+{'bdate': '11.7.1993', 'last_name': 'Kovalenko', 'first_name': 'Shimon', 'title': 'Russia', 'year_to': 2018, 'time': True, 'name': 'MSU'}
+```
+
+It seams all is Ok, but..      
+The problem is - we lost fields with identicaly nemes in last dictionary level. We have subkey 'title'  in dictionaries 'city'  &   'country'.
+May be try form composed keyfor such situations?
+
 
