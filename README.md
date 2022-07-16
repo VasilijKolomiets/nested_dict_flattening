@@ -3,3 +3,6 @@
     This module gives  function(s) for nested dict flattening (by some pattern).
 
     It may be useful in some socisl networks parsing
+    
+### Step 1.  Starting code
+### Step 2.  Code with example of nested dict printing out.
