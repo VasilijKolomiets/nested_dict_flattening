@@ -70,6 +70,11 @@ if __name__ == '__main__':
 
     print(flatten_by_pattern(nested_dict_example, flatten_pattern_dict))
 ```
+The final prints produce:
+```
+{'bdate': '11.7.1993', 'last_name': 'Kovalenko', 'first_name': 'Shimon'}
+```
+
 
 The problem is - we have formed out only keys lelel 1 of input dictionary.     
 May be try recursion?
