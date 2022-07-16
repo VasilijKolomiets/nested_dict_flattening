@@ -3,7 +3,9 @@
 
     It may be useful in some socisl networks parsing
 
+    Development . All keys presence assumed.
 """
+
 
 def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
     """Flatten the 'dict_in' nested dict with some pattern dictionary - 'pattern_dict'.
@@ -15,11 +17,15 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
     Returns:
         dict: Flatten dictionary
     """
+    out_dict = dict()
     for key, value in pattern_dict.items():
         if key in dict_in:
             print(F'{key=} {dict_in[key]=}')
+            if value is True:                       # copyting proper final value
+                out_dict.update({key: dict_in[key]})
 
-    return dict()
+    return out_dict
+
 
 if __name__ == '__main__':
     nested_dict_example = dict(
@@ -35,7 +41,7 @@ if __name__ == '__main__':
             faculty='Applied Mathematics',
             graduation=dict(year_from=2013, year_to=2018),
         )
-        )
+    )
 
     flatten_pattern_dict = dict(
         bdate=True,
@@ -48,8 +54,7 @@ if __name__ == '__main__':
         universities=dict(
             name=True,
             graduation=dict(year_to=True),
-            ),
+        ),
     )
 
-    if isinstance(flatten_by_pattern(nested_dict_example, flatten_pattern_dict), dict):
-        print("Вона працює!")
+    print(flatten_by_pattern(nested_dict_example, flatten_pattern_dict))
