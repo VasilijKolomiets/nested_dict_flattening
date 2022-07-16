@@ -1,4 +1,4 @@
-# nested_dict_flattening
+# Nested dicticonary flattening.
 
     This module gives  function(s) for nested dict flattening (by some pattern).
 
