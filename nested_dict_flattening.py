@@ -4,10 +4,11 @@
     It may be useful in some socisl networks parsing
 
     Development 4-th step. Recursive calls.
+    Development 5-th step. Composite output keys.
 """
 
 
-def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
+def flatten_by_pattern(dict_in: dict, pattern_dict: dict, parent_key='') -> dict:
     """Flatten the 'dict_in' nested dict with some pattern dictionary - 'pattern_dict'.
 
     Args:
@@ -22,9 +23,9 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
         if key in dict_in:
             print(F'{key=} {dict_in[key]=}')
             if value is True:                       # copying proper final value
-                out_dict.update({key: dict_in[key]})
+                out_dict.update({parent_key + '.' + key: dict_in[key]})
             elif isinstance(value, dict):
-                out_dict.update(flatten_by_pattern(dict_in[key], value))
+                out_dict.update(flatten_by_pattern(dict_in[key], value, parent_key=parent_key + '.' + key))
             else:
                 assert False, F'What the "{value}"? Or "True" or dict !! '
 
