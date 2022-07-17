@@ -5,9 +5,11 @@
 
     Development 4-th step. Recursive calls.
     Development 5-th step. Composite output keys.
+    Development 6-th step. Type conversions added.
 
 """
 from datetime import datetime as dt
+from pprint import pprint
 
 
 def flatten_by_pattern(dict_in: dict, pattern_dict: dict, parent_key='') -> dict:
@@ -23,7 +25,7 @@ def flatten_by_pattern(dict_in: dict, pattern_dict: dict, parent_key='') -> dict
     out_dict = dict()
     for key, value in pattern_dict.items():
         if key in dict_in:
-            current_composite_key = parent_key + '.' + key
+            current_composite_key = parent_key + '.' + key if parent_key else key
             print(F'{key=} {dict_in[key]=}')
             if value is True:                       # copying proper final value
                 out_dict.update({current_composite_key: dict_in[key]})
@@ -67,4 +69,4 @@ if __name__ == '__main__':
         ),
     )
 
-    print(flatten_by_pattern(nested_dict_example, flatten_pattern_dict))
+    pprint(flatten_by_pattern(nested_dict_example, flatten_pattern_dict))
