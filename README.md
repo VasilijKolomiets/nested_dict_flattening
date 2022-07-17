@@ -1,11 +1,38 @@
-# nested_dict_flattening
+# Nested dicticonary flattening.
 
     This module gives  function(s) for nested dict flattening (by some pattern).
 
     It may be useful in some socisl networks parsing    
     
-#### Step 0.  https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet   
-#### Step 1.  Starting code
+#### Step 0.  https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet     
+
+#### Step 1.  Starting code  
+```Python
+
+"""
+    This module gives  function(s) for nested dict flattening (by some pattern).
+
+    It may be useful in some socisl networks parsing
+
+"""
+
+def flatten_by_pattern(dict_in: dict, pattern_dict: dict) -> dict:
+    """Flatten the 'dict_in' nested dict with some pattern dictionary - 'pattern_dict'.
+
+    Args:
+        dict_in (dict): income (nested) dictionary
+        pattern_dict (dict): pattern dict for flattening
+
+    Returns:
+        dict: Flatten dictionary
+    """
+    return dict() 
+
+if __name__ == '__main__':
+    if isinstance(flatten_by_pattern(dict(), dict()), dict):
+        print("Вона працює!")
+ ```       
+        
 #### Step 2.  Code with example of nested dict printing out.
 #### Step 3.  1-st attempt to form resulting dictionary. All keys presence assumed.
 
@@ -118,5 +145,38 @@ It gives the last print  output:
 It seams all is Ok, but..      
 The problem is - we lost fields with identicaly nemes in last dictionary level. We have subkey 'title'  in dictionaries 'city'  &   'country'.
 May be try form composed keyfor such situations?
+
+```Python
+def flatten_by_pattern(dict_in: dict, pattern_dict: dict, parent_key='') -> dict:
+    """Flatten the 'dict_in' nested dict with some pattern dictionary - 'pattern_dict'.
+
+    Args:
+        dict_in (dict): income (nested) dictionary
+        pattern_dict (dict): pattern dict for flattening
+
+    Returns:
+        dict: Flatten dictionary
+    """
+    out_dict = dict()
+    for key, value in pattern_dict.items():
+        if key in dict_in:
+            print(F'{key=} {dict_in[key]=}')
+            if value is True:                       # copying proper final value
+                out_dict.update({parent_key + '.' + key: dict_in[key]})
+            elif isinstance(value, dict):
+                out_dict.update(flatten_by_pattern(dict_in[key], value, parent_key=parent_key + '.' + key))
+            else:
+                assert False, F'What the "{value}"? Or "True" or dict !! '
+
+    return out_dict
+```
+It gives the last print  output:
+```
+{'.bdate': '11.7.1993', '.last_name': 'Kovalenko', '.first_name': 'Shimon', '.city.title': 'Moscow', '.country.title': 'Russia', '.schools.year_to': 2012, '.last_seen.time': True, '.universities.name': 'MSU', '.universities.graduation.year_to': 2018}
+```
+
+It seams much better. Now we haw all fieds needed.    
+But it is look like robotic history - not human friendly, isn't it?
+May be exchange tjese keys to human like?
 
 
