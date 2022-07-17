@@ -149,7 +149,7 @@ It gives the last print  output:
 ```
 
 It seams much better. Now we haw all fieds needed.    
-But it is look like robotic history - not human friendly? isn it?
+But it is look like robotic history - not human friendly, isn't it?
 May be exchange tjese keys to human like?
 
 
